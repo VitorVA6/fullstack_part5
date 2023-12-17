@@ -13,7 +13,7 @@ const Blog = ({ blog, handleUpdate, handleDelete, user }) => {
   return(
     <div style={blogStyle}>
       {blog.title} {blog.author} <button onClick={() => setShow(!show)}>{show ? 'hide' : 'view'}</button>
-      <div style={{ display: show ? '' : 'none' }}>
+      <div style={{ display: show ? '' : 'none' }} className='blog-togglable'>
         <a href={blog.url} target='_blank' rel='noreferrer'>{blog.url}</a>
         <p>
           likes {blog.likes}
