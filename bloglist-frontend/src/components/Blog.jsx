@@ -11,20 +11,26 @@ const Blog = ({ blog, handleUpdate, handleDelete, user }) => {
     marginBottom: 5
   }
   return(
-    <div style={blogStyle}>
-      {blog.title} {blog.author} <button onClick={() => setShow(!show)}>{show ? 'hide' : 'view'}</button>
+    <div style={blogStyle} className='blog'>
+      <span>{blog.title} {blog.author}<button onClick={() => setShow(!show)}>{show ? 'hide' : 'view'}</button></span>
       <div style={{ display: show ? '' : 'none' }} className='blog-togglable'>
         <a href={blog.url} target='_blank' rel='noreferrer'>{blog.url}</a>
         <p>
           likes {blog.likes}
-          <button onClick={() => handleUpdate({ ...blog, user: blog.user.id, likes: blog.likes+1 })}>
+          <button
+            className='like-button'
+            onClick={() => handleUpdate({ ...blog, user: blog.user.id, likes: blog.likes+1 })}
+          >
             like
           </button>
         </p>
         <p>{blog.user.name}</p>
         {
           user.username === blog.user.username &&
-          <button onClick={() => handleDelete(blog)}>remove</button>
+          <button
+            onClick={() => handleDelete(blog)}
+            className='remove-button'
+          >remove</button>
         }
       </div>
     </div>

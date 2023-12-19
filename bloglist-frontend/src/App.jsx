@@ -85,7 +85,8 @@ const App = () => {
       setUser(user)
       blogService.setToken(user.token)
     }catch(err){
-      console.log(err)
+      console.log('oiii')
+      showMessage('error', err.response.data.error)
     }
   }
 
@@ -96,6 +97,7 @@ const App = () => {
 
   return (
     <div>
+      <Notification message={message}/>
       {
         user === null ?
           <LoginForm
@@ -107,8 +109,10 @@ const App = () => {
           /> :
           <>
             <h2>blogs</h2>
-            <Notification message={message}/>
-            <p>{user.name} logged in <button onClick={handleLogout}>logout</button></p>
+            <div>
+              <p>{user.name} logged in</p>
+              <button onClick={handleLogout}>logout</button>
+            </div>
             <Togglable buttonLabel='new blog'>
               <BlogForm handleCreate={handleCreate}/>
             </Togglable>
